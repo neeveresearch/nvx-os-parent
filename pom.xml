@@ -5,6 +5,7 @@
     <artifactId>nvx-os-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <url>https://github.com/neeveresearch/nvx-os-parent</url>
 
     <licenses>
         <license>
@@ -19,6 +20,12 @@
         <name>Neeve Research, LLC</name>
         <url>http://www.neeveresearch.com</url>
     </organization>
+
+    <scm>
+        <url>https://github.com/neeveresearch/nvx-os-parent.git</url>
+        <connection>scm:git:git://github.com/neeveresearch/nvx-os-parent.git</connection>
+        <developerConnection>scm:git:git@github.com:neeveresearch/nvx-os-parent.git</developerConnection>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -46,18 +53,18 @@
                 </executions>
             </plugin>
 
-
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <executions>
-                    <!-- format license headers -->
+                    <!-- check for valid license headers -->
                     <execution>
                         <id>check-headers</id>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
+
         <pluginManagement>
             <plugins>
                 <!-- Attach Source Jars -->
@@ -100,6 +107,7 @@
                         </archive>
                     </configuration>
                 </plugin>
+
                 <!-- common javadoc parameters -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -117,6 +125,7 @@
                         </tags>
                     </configuration>
                 </plugin>
+
                 <!-- license checking -->
                 <plugin>
                     <groupId>com.mycila</groupId>
@@ -176,10 +185,37 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.1</version>
                 </plugin>
+
+                <!-- Enforce No Snapshots -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4.1</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-no-snapshots</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <requireReleaseDeps>
+                                        <message>No Snapshots Allowed!</message>
+                                    </requireReleaseDeps>
+                                    <requireReleaseVersion>
+                                        <message>Release Version Required!</message>
+                                    </requireReleaseVersion>
+                                </rules>
+                                <fail>true</fail>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
+    <!-- Dependency repositories -->
     <repositories>
         <repository>
             <id>neeve-central</id>
@@ -205,6 +241,7 @@
         </repository>
     </repositories>
 
+    <!-- Plugin repositories -->
     <pluginRepositories>
         <pluginRepository>
             <id>neeve-central</id>
@@ -219,6 +256,7 @@
         </pluginRepository>
     </pluginRepositories>
 
+    <!-- Release repositories -->
     <distributionManagement>
         <repository>
             <id>neeve-public-releases</id>
@@ -234,6 +272,7 @@
     </distributionManagement>
 
     <profiles>
+        <!-- For milestone releases -->
         <profile>
             <id>milestone</id>
             <distributionManagement>
@@ -249,9 +288,21 @@
                     <plugin>
                         <artifactId>maven-source-plugin</artifactId>
                     </plugin>
+
+                    <!-- No Snapshots -->
+                    <plugin>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-no-snapshots</id>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
+
+        <!-- For releases -->
         <profile>
             <id>release</id>
             <build>
@@ -259,6 +310,16 @@
                     <!-- Source Jar -->
                     <plugin>
                         <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+
+                    <!-- No Snapshots -->
+                    <plugin>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-no-snapshots</id>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -302,6 +363,7 @@
             </properties>
         </profile>
 
+        <!--Filter out m2e errors for eclipse -->
         <profile>
             <id>only-eclipse</id>
             <activation>
@@ -312,8 +374,6 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on
-                            the Maven build itself. -->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
                             <artifactId>lifecycle-mapping</artifactId>
