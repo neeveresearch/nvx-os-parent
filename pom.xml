@@ -17,8 +17,8 @@
     </licenses>
 
     <organization>
-        <name>Neeve Research, LLC</name>
-        <url>http://www.neeveresearch.com</url>
+        <name>N5 Technologies, Inc</name>
+        <url>http://www.n5corp.com</url>
     </organization>
 
     <scm>
@@ -29,7 +29,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vendor.name>Neeve Research, LLC</vendor.name>
+        <vendor.name>N5 Technologies, Inc</vendor.name>
     </properties>
 
     <build>
@@ -57,7 +57,6 @@
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <executions>
-                    <!-- check for valid license headers -->
                     <execution>
                         <id>check-headers</id>
                     </execution>
@@ -96,12 +95,12 @@
                     <configuration>
                         <archive>
                             <manifestEntries>
-                                <Created-By>Maven</Created-By>
-                                <Specification-Title>${project.artifactId}</Specification-Title>
+                                <Created-By>${vendor.name} (using Maven)</Created-By>
+                                <Specification-Title>${project.name}</Specification-Title>
                                 <Specification-Version>${project.version}</Specification-Version>
                                 <Specification-Vendor>${vendor.name}</Specification-Vendor>
-                                <Implementation-Title>${project.artifactId}</Implementation-Title>
-                                <Implementation-Version>${build.version.display}</Implementation-Version>
+                                <Implementation-Title>${project.name}</Implementation-Title>
+                                <Implementation-Version>${project.version}</Implementation-Version>
                                 <Implementation-Vendor>${vendor.name}</Implementation-Vendor>
                             </manifestEntries>
                         </archive>
@@ -151,7 +150,7 @@
                     </executions>
                     <configuration>
                         <strictCheck>false</strictCheck>
-                        <header>https://build.neeveresearch.com/buildresources/asl20-copywrite-header.txt</header>
+                        <header>https://build.neeveresearch.com/buildresources/n5-asl20-copywrite-header.txt</header>
                         <failIfMissing>true</failIfMissing>
                         <aggregate>true</aggregate>
                         <includes>
@@ -218,33 +217,9 @@
     <!-- Dependency repositories -->
     <repositories>
         <repository>
-            <id>neeve-central</id>
-            <url>http://nexus.neeveresearch.com/nexus/content/groups/public/</url>
-            <name>Neeve Central</name>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <!-- For Core X releases which require license agreement and credentials -->
-        <repository>
-            <id>neeve-licensed-releases</id>
-            <url>http://nexus.neeveresearch.com/nexus/content/repositories/neeve-licensed-releases/</url>
-            <name>Neeve Licensed Release Repo</name>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <!-- For Core X milestones which require license agreement and credentials -->
-        <repository>
-            <id>neeve-licensed-milestones</id>
-            <url>http://nexus.neeveresearch.com/nexus/content/repositories/neeve-licensed-milestones/</url>
-            <name>Neeve Licensed Milestone Repo</name>
+            <id>rumi-public</id>
+            <url>http://nexus.rumidata.io:8081/repository/maven-public/</url>
+            <name>Rumi Repository</name>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -257,33 +232,9 @@
     <!-- Plugin repositories -->
     <pluginRepositories>
         <pluginRepository>
-            <id>neeve-central</id>
-            <url>http://nexus.neeveresearch.com/nexus/content/groups/public/</url>
-            <name>Neeve Central</name>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-        <!-- For Core X releases which require license agreement and credentials -->
-        <pluginRepository>
-            <id>neeve-licensed-milestones</id>
-            <url>http://nexus.neeveresearch.com/nexus/content/repositories/neeve-licensed-milestones/</url>
-            <name>Neeve Licensed Milestone Repo</name>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-        <!-- For Core X milestones which require license agreement and credentials -->
-        <pluginRepository>
-            <id>neeve-licensed-releases</id>
-            <url>http://nexus.neeveresearch.com/nexus/content/repositories/neeve-licensed-releases/</url>
-            <name>Neeve Licensed Release Repo</name>
+            <id>rumi-public</id>
+            <url>http://nexus.rumidata.io:8081/repository/maven-public/</url>
+            <name>Rumi Repository</name>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -300,6 +251,7 @@
             <name>Internal Releases</name>
             <url>http://nexus.neeveresearch.com/nexus/content/repositories/public-releases/</url>
         </repository>
+
         <snapshotRepository>
             <id>neeve-public-snapshots</id>
             <name>Internal Releases</name>
