@@ -218,7 +218,7 @@
     <repositories>
         <repository>
             <id>rumi-public</id>
-            <url>http://nexus.rumidata.io:8081/repository/maven-public/</url>
+            <url>https://nexus.n5corp.com/repository/maven-public/</url>
             <name>Rumi Repository</name>
             <snapshots>
                 <enabled>false</enabled>
@@ -233,7 +233,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>rumi-public</id>
-            <url>http://nexus.rumidata.io:8081/repository/maven-public/</url>
+            <url>https://nexus.n5corp.com/repository/maven-public/</url>
             <name>Rumi Repository</name>
             <snapshots>
                 <enabled>false</enabled>
@@ -249,13 +249,13 @@
         <repository>
             <id>neeve-public-releases</id>
             <name>Internal Releases</name>
-            <url>http://nexus.neeveresearch.com/nexus/content/repositories/public-releases/</url>
+            <url>https://nexus.neeveresearch.com/nexus/content/repositories/public-releases/</url>
         </repository>
 
         <snapshotRepository>
             <id>neeve-public-snapshots</id>
             <name>Internal Releases</name>
-            <url>http://nexus.neeveresearch.com/nexus/content/repositories/public-snapshots/</url>
+            <url>https://nexus.neeveresearch.com/nexus/content/repositories/public-snapshots/</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
@@ -268,7 +268,7 @@
                 <repository>
                     <id>neeve-public-milestones</id>
                     <name>Milestone Releases</name>
-                    <url>http://nexus.neeveresearch.com/nexus/content/repositories/public-milestones/</url>
+                    <url>https://nexus.neeveresearch.com/nexus/content/repositories/public-milestones/</url>
                 </repository>
             </distributionManagement>
             <build>
